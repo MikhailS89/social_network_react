@@ -1,0 +1,26 @@
+@font-face {
+	font-family: 'font-roboto-italic'; 
+	src: url(./assets/fonts/Roboto/Roboto-Italic.ttf); 
+}
+
+@font-face {
+	font-family: 'font-roboto-Regular'; 
+	src: url(./assets/fonts/Roboto/Roboto-Regular.ttf); 
+}
+
+.app{
+    //border: 1px solid black;
+    font-family: 'font-roboto-Regular'; 
+	font-size: 16px;
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    background-color: grey;
+
+    .app__header{
+
+    }
+    .app__wrp{
+
+    }
+}
