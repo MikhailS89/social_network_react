@@ -1,15 +1,15 @@
-import './App.css';
+import './App.scss';
 import Message from './Message/Message';
 
-const learn = 'Learn React';
+const learn = 'Message';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
+    <div className="app">
+      <header className="app__header">
+        <div className="app__wrp">
           <Message title={learn}/>
-        </p>
+        </div>
       </header>
     </div>
   );

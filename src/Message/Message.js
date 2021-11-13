@@ -1,9 +1,10 @@
 import React from 'react';
+import './Message.scss';
 
 export default function Message(props) {
     return (
-        <div>
-            <h4>{props.title}</h4>
+        <div className="message">
+            <h4 className="meessge__title">{props.title}</h4>
         </div>
     )
 }
