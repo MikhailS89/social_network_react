@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 //import React, { useCallback } from "react";
 import "./App.scss";
 import Message from "./Message/Message";
@@ -7,7 +7,16 @@ export default function App() {
   const [messageList, sendMessageList] = useState([]);
   const [value, setValue] = useState('');
   const [author, setAuthor] = useState('');
+  const ref = useRef(null);
+  // const [chat, setChat] = useState([
+  //   {name: 'Картинки', id: Date.now() },
+  //   {name: 'Котики', id: Date.now() },
+  //   {name: 'Работа', id: Date.now() },
+  //   {name: 'Дом', id: Date.now() },
+  //   {name: 'Учеба', id: Date.now() }
+  // ]);
   
+  // Начало Вариант 1
   // const sendRobot = (messageList) => {
   //   if(messageList.length){
   //     if(messageList[messageList.length - 1].author !== 'Robot'){
@@ -24,8 +33,9 @@ export default function App() {
   // useEffect(() => {
   //   sendRobot(messageList);
   // }, [messageList]);
+  // Конец Вариант 
 
-  
+  // Начало Вариант 2
   // const botSendMessage = useCallback(() => {
   //   if(messageList.length){
   //     if(messageList[messageList.length - 1].author !== 'Robot'){
@@ -42,11 +52,13 @@ export default function App() {
   // useEffect(() => {
   //   botSendMessage();
   // }, [botSendMessage]);
+  // Конец Вариант 2
 
   useEffect(() => {
+    let timerId = null
     if(messageList.length){
       if(messageList[messageList.length - 1].author !== 'Robot'){
-        setTimeout(() => {
+        timerId = setTimeout(() => {
           sendMessageList([
             ...messageList,
             {text: `messega send ${messageList[messageList.length - 1].author}`, author: 'Robot', id: Date.now() },
@@ -54,6 +66,13 @@ export default function App() {
         }, 1500)
       }
     }
+    return () => clearInterval(timerId);
+  }, [messageList]);
+
+  //автофокус на текстовое поле при открытии страницы и после отправки сообщения
+  useEffect(() => {
+    console.log(ref);
+    ref.current?.focus();
   }, [messageList]);
 
 
@@ -88,7 +107,7 @@ export default function App() {
       </header>
       <main className="main">
         <form className="main__form">
-          <textarea value={value} onChange={changeText} className="main__message"></textarea>
+          <textarea ref={ref} value={value} onChange={changeText} className="main__message"></textarea>
           <div className="main__wrp">
             <input value={author} onInput={changeAuthor} className="main__author"></input>
             <button onClick={sendMessage} className="main__send">
