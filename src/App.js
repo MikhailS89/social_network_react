@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import React, { useCallback } from "react";
 import "./App.scss";
 import Message from "./Message/Message";
 
@@ -7,7 +8,42 @@ export default function App() {
   const [value, setValue] = useState('');
   const [author, setAuthor] = useState('');
   
-  const sendRobot = (messageList) => {
+  // const sendRobot = (messageList) => {
+  //   if(messageList.length){
+  //     if(messageList[messageList.length - 1].author !== 'Robot'){
+  //       setTimeout(() => {
+  //         sendMessageList([
+  //           ...messageList,
+  //           {text: `messega send ${messageList[messageList.length - 1].author}`, author: 'Robot', id: Date.now() },
+  //         ])
+  //       }, 1500)
+  //     }
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   sendRobot(messageList);
+  // }, [messageList]);
+
+  
+  // const botSendMessage = useCallback(() => {
+  //   if(messageList.length){
+  //     if(messageList[messageList.length - 1].author !== 'Robot'){
+  //       setTimeout(() => {
+  //         sendMessageList([
+  //           ...messageList,
+  //           {text: `messega send ${messageList[messageList.length - 1].author}`, author: 'Robot', id: Date.now() },
+  //         ])
+  //       }, 1500)
+  //     }
+  //   }
+  // })
+
+  // useEffect(() => {
+  //   botSendMessage();
+  // }, [botSendMessage]);
+
+  useEffect(() => {
     if(messageList.length){
       if(messageList[messageList.length - 1].author !== 'Robot'){
         setTimeout(() => {
@@ -18,11 +54,7 @@ export default function App() {
         }, 1500)
       }
     }
-  }
-
-  useEffect(() => {
-    sendRobot(messageList)
-  }, [messageList])
+  }, [messageList]);
 
 
   const changeText = (event) => {
