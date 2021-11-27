@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
-import MessageList from './components/message-list/message-list';
+import Header from './components/Header/header'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {ThemeProvider, createTheme} from "@mui/material";
+import { ChatPage } from './pages/chat';
 
 const theme = createTheme([]);
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <MessageList/>
+      <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path="/" element={<h1>Home page</h1>} />
+          <Route path="/chat/*" element={<ChatPage />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -2,8 +2,7 @@ import React from 'react';
 import './Message.scss';
 import {Box} from "@mui/material";
 
-export default function Message({text = '', author = ''}) {
-    //console.log('Message(props)', props);
+export default function Message({text = '', author = 'User'}) {
     return (
         <Box className="message">
             <h4 className="message__title">{text}</h4>
