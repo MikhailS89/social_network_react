@@ -1,16 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Chat.scss';
 import {List, ListItem} from "@mui/material";
 
-export default function Chat({list}) {
+export default function Chat() {
+
+const [chats] = useState([
+    {name: 'Картинки', id: [] },
+    {name: 'Котики', id: [] },
+    {name: 'Работа', id: [] },
+    {name: 'Дом', id: [] },
+    {name: 'Учеба', id: [] }
+  ]);
+
     return (
         <List className="MuiList-root MuiList-padding chat css-h4y409-MuiList-root">
-            {list.map((item) => (
+            {chats.map((chat, index) => (
                 <ListItem 
-                    key={item.id}
+                    key={index}
                     className="MuiListItem-root MuiListItem-gutters MuiListItem-padding chat-list css-1p823my-MuiListItem-root"
                 >
-                    <p>{item.name}</p>
+                    <p>{chat.name}</p>
                 </ListItem>
             ))}
             

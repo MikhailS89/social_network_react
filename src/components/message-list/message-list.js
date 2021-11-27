@@ -14,16 +14,16 @@ import Chat from "../Chat/Chat"
 export default function MessageList() {
   const [messageList, sendMessageList] = useState([]);
   const [value, setValue] = useState('');
-  const [author, setAuthor] = useState('');
+  //const [author, setAuthor] = useState('');
   const ref = useRef(null);
   //const styles = useStyle();
-  const [chat, setChat] = useState([
-    {name: 'Картинки', id: Date.now() },
-    {name: 'Котики', id: Date.now() },
-    {name: 'Работа', id: Date.now() },
-    {name: 'Дом', id: Date.now() },
-    {name: 'Учеба', id: Date.now() }
-  ]);
+  // const [chat, setChat] = useState([
+  //   {name: 'Картинки', id: [] },
+  //   {name: 'Котики', id: [] },
+  //   {name: 'Работа', id: [] },
+  //   {name: 'Дом', id: [] },
+  //   {name: 'Учеба', id: [] }
+  // ]);
 
   useEffect(() => {
     let timerId = null
@@ -33,6 +33,7 @@ export default function MessageList() {
           sendMessageList([
             ...messageList,
             {text: `messega send ${messageList[messageList.length - 1].author}`, author: 'Robot', id: Date.now() },
+            
           ])
         }, 1500)
       }
@@ -42,7 +43,7 @@ export default function MessageList() {
 
   //автофокус на текстовое поле при открытии страницы и после отправки сообщения
   useEffect(() => {
-    console.log(ref);
+    //console.log(ref);
     ref.current?.focus();
   }, [messageList]);
 
@@ -50,22 +51,23 @@ export default function MessageList() {
   const changeText = (event) => {
     setValue(event.target.value);
   };
-  const changeAuthor = (event) => {
-    setAuthor(event.target.value);
-  };
+  // const changeAuthor = (event) => {
+  //   setAuthor(event.target.value);
+  // };
   const sendMessage = (event) => {
     event.preventDefault();
     sendMessageList([
       ...messageList,
-      { text: value, author: author, id: Date.now() },
+      // { text: value, author: author, id: Date.now() },
+      { text: value, author: "User", id: Date.now() },
     ])
     setValue('')
-    setAuthor('')
+    //setAuthor('')
   };
 
   return (
     <Box className="app">
-      <Chat list={chat}/>
+      <Chat/>
       <Box className="message-list">
         <Box className="app__header">
           <Box className="app__wrp">
@@ -89,13 +91,13 @@ export default function MessageList() {
               onChange={changeText} 
               className="main__message"/>
             <Box className="main__wrp">
-              <TextField 
+              {/* <TextField 
                 label="name"
                 id="outlined-size-small"
                 size="small" 
                 value={author} 
                 onInput={changeAuthor} 
-                className="main__author"/>
+                className="main__author"/> */}
               <Button 
                 variant="outlined" 
                 size="medium" 
